@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybaits//DTD Mapper 3.0//EN"
+        "http://mybatis/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.louis.info.mapper.UserMapper">
+
+</mapper>
