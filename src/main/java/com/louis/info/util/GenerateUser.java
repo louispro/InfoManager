@@ -160,7 +160,7 @@ public class GenerateUser {
 
     private User create(){
         User user = new User();
-        user.setId(Integer.toString(id));
+        user.setId(id);
         id++;
         user.setGender(sex);   //性别
         user.setUsername(name);
@@ -169,7 +169,7 @@ public class GenerateUser {
         user.setHeight(height); //身高
         user.setWeight(weight); //体重
         user.setEducation(education);
-        user.setPhoneNumber(phonenumber);
+        user.setPhonenumber(phonenumber);
         user.setEmail(email);
         System.out.println(user);
         return user;

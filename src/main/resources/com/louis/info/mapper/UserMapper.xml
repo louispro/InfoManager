@@ -2,5 +2,127 @@
 <!DOCTYPE mapper PUBLIC "-//mybaits//DTD Mapper 3.0//EN"
         "http://mybatis/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.louis.info.mapper.UserMapper">
+    <!-- 开启缓存 -->
+    <cache
+            eviction="FIFO"
+            flushInterval="60000"
+            size="200000"
+            readOnly="false"
+        />
 
+    <resultMap id="userResultMap" type="user">
+        <id property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="password" column="pwd"/>
+        <result property="gender" column="gender"/>
+        <result property="education" column="education"/>
+        <result property="phonenumber" column="phonenumber"/>
+        <result property="address" column="address"/>
+        <result property="email" column="email"/>
+        <result property="height" column="height"/>
+        <result property="weight" column="weight"/>
+        <result property="imageUrl" column="imageUrl"/>
+        <result property="roleName" column="roleName"/>
+    </resultMap>
+
+    <select id="getAllUser" resultMap="userResultMap">
+        SELECT u.id,u.username,u.pwd,u.gender,u.education,u.phonenumber,u.address,u.email,u.height,u.weight,u.imageUrl,r.roleName FROM user_table AS u
+        LEFT JOIN role_table AS r
+        ON u.roleId = r.id
+    </select>
+
+    <select id="getUserById" parameterType="Integer" resultMap="userResultMap">
+        SELECT u.id,u.username,u.pwd,u.gender,u.education,u.phonenumber,u.address,u.email,u.height,u.weight,u.imageUrl,r.roleName FROM user_table AS u
+        LEFT JOIN role_table AS r
+        ON u.roleId = r.id
+        WHERE u.id=#{id}
+    </select>
+
+    <select id="getUserByPhonenumber" parameterType="String" resultMap="userResultMap">
+        SELECT u.id,u.username,u.pwd,u.gender,u.education,u.phonenumber,u.address,u.email,u.height,u.weight,u.imageUrl,r.roleName FROM user_table AS u
+        LEFT JOIN role_table AS r
+        ON u.roleId = r.id
+        WHERE u.phonenumber=#{phonenumber}
+    </select>
+
+    <select id="getUserByEmail" parameterType="String" resultMap="userResultMap">
+        SELECT u.id,u.username,u.pwd,u.gender,u.education,u.phonenumber,u.address,u.email,u.height,u.weight,u.imageUrl,r.roleName FROM user_table AS u
+        LEFT JOIN role_table AS r
+        ON u.roleId = r.id
+        WHERE u.email=#{email}
+    </select>
+
+    <update id="updateUserInfo" parameterType="user">
+        update user_table
+        <set>
+            <if test="id!=null and id!=''">
+                id = #{id},
+            </if>
+            <if test="username!=null and username!=''">
+                username=#{username},
+            </if>
+            <if test="password!=null and password!=''">
+                pwd = #{password},
+            </if>
+            <if test="gender != null and gender!=''">
+                gender = #{gender},
+            </if>
+            <if test="education!=null and education!=''">
+                education=#{education},
+            </if>
+            <if test="phonenumber!=null and phonenumber!=''">
+                phonenumber=#{phonenumber},
+            </if>
+            <if test="address!=null and address!=''">
+                address=#{address},
+            </if>
+            <if test="email!=null and email!=''">
+                email=#{email},
+            </if>
+            <if test="height!=null and height!=''">
+                height=#{height},
+            </if>
+            <if test="weight!=null and weight!=''">
+                weight=#{weight},
+            </if>
+            <if test="imageUrl!=null and imageUrl!=''">
+                imageUrl=#{imageUrl},
+            </if>
+            <if test="roleName=='管理员'">
+                roleId = 0,
+            </if>
+            <if test="roleName=='普通用户'">
+                roleId = 1,
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteUserById" parameterType="Integer">
+        DELETE FROM user_table WHERE id = #{id}
+    </delete>
+
+    <select id="getUserCount" resultType="Integer">
+        SELECT COUNT(id) FROM user_table
+    </select>
+
+    <insert id="addUser" parameterType="user">
+        INSERT INTO user_table(id,username,pwd,gender,education,phonenumber,address,email,height,weight,imageUrl,roleId) VALUES
+        (#{id},#{username},#{password},#{gender},#{education},#{phonenumber},#{address},#{email},#{height},#{weight},#{imageUrl},
+        <if test="roleName=='普通用户'">
+            1
+        </if>
+        <if test="roleName=='管理员'">
+            0
+        </if> )
+    </insert>
+
+    <select id="generateId" resultType="Integer">
+        SELECT MAX(id)+1 FROM user_table
+    </select>
+
+    <insert id="addUser4Param">
+        INSERT INTO user_table(id,username,pwd,phonenumber) VALUES
+        (#{id},#{username},#{password},#{phonenumber})
+    </insert>
 </mapper>

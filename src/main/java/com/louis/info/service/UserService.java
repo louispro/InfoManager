@@ -1,8 +1,6 @@
-package com.louis.info.mapper;
+package com.louis.info.service;
 
 import com.louis.info.pojo.User;
-import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -10,8 +8,7 @@ import java.util.List;
  * 赖小燚
  * www.louis.com
  */
-@Repository
-public interface UserMapper {
+public interface UserService {
 
     User getUserByPhonenumber(String phonenumber);
 
@@ -29,8 +26,7 @@ public interface UserMapper {
 
     int addUser(User user);
 
-    int addUser4Param(@Param("id")Integer id,@Param("username")String username,@Param("password")String password,@Param("phonenumber")String phonenumber);
-
     Integer generateId();
 
+    int addUser4Param(Integer id,String username,String password,String phonenumber);
 }

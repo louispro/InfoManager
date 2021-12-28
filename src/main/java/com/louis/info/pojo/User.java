@@ -1,12 +1,15 @@
 package com.louis.info.pojo;
 
+import java.io.Serializable;
+
 /**
  * 赖小燚
  * www.louis.com
  */
-public class User {
+public class User implements Serializable {
+    private static final long serialVersionUID = 1L;
     //唯一id
-    private String id;
+    private Integer id;
     //用户名
     private String username;
     //密码
@@ -15,7 +18,7 @@ public class User {
     private String gender;
     //学历
     private String education;
-    //健康状态
+    //手机号
     private String phonenumber;
     //地址
     private String address;
@@ -27,14 +30,30 @@ public class User {
     private Integer weight;
     //图片url
     private String imageUrl;
-    //用户名
+    //角色名
     private String roleName;
 
-    public String getId() {
+    public String getPhonenumber() {
+        return phonenumber;
+    }
+
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -68,14 +87,6 @@ public class User {
 
     public void setEducation(String education) {
         this.education = education;
-    }
-
-    public String getPhoneNumber() {
-        return phonenumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phonenumber = phoneNumber;
     }
 
     public String getAddress() {
