@@ -23,6 +23,21 @@
         <property name="defaultEncoding" value="uatf-8"></property>
     </bean>
 
+    <!-- 拦截器 -->
+    <mvc:interceptors>
+        <!-- 拦截用户请求 -->
+        <mvc:interceptor>
+            <mvc:mapping path="/user/*"/>
+            <mvc:exclude-mapping path="/user/toRegist"/>
+            <bean class="com.louis.info.interceptor.UserInterceptor"/>
+        </mvc:interceptor>
+        <!-- 拦截后台管理请求 -->
+        <mvc:interceptor>
+            <mvc:mapping path="/manage/*"/>
+            <bean class="com.louis.info.interceptor.ManageInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
     <mvc:annotation-driven></mvc:annotation-driven>
     <mvc:default-servlet-handler/>
 </beans>

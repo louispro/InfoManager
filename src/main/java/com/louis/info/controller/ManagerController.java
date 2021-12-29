@@ -31,34 +31,6 @@ public class ManagerController {
                         @RequestParam("roleId")Integer id,
                         @RequestParam("password")String password,
                         Model model, HttpServletRequest request){
-        if(id!=0){
-            model.addAttribute("msg","你不是管理员身份，请联系管理员！");
-            return "user/login";
-        }
-        String key = ParseUtil.parseParamIsIdPhoneEmail(userKey);
-        User user = null;
-        if("id".equals(key)){
-            user = userService.getUserById(ParseUtil.parseString2Int(userKey));
-        }
-        if("phonenumber".equals(key)){
-            user = userService.getUserByPhonenumber(userKey);
-        }
-        if("email".equals(userKey)){
-            user = userService.getUserByEmail(userKey);
-        }
-        if(user==null){
-            //用户为null,返回登录界面
-            model.addAttribute("msg","用户不存在");
-            return "user/login";    //
-        }else {
-            //用户存在，但是输入密码错误
-            if(!password.equals(user.getPassword())){
-                model.addAttribute("msg","密码错误");
-                return "user/login";
-            }
-        }
-        HttpSession session = request.getSession();
-        session.setAttribute("user",user);
         return "redirect:/manage/list";
     }
 

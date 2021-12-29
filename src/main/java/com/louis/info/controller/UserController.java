@@ -31,31 +31,31 @@ public class UserController {
 
     @PostMapping("/login")
     public String login(@RequestParam("userKey")String userKey, @RequestParam("password")String password, Model model, HttpServletRequest request){
-        String key = ParseUtil.parseParamIsIdPhoneEmail(userKey);
-        User user = null;
-        if("id".equals(key)){
-            user = userService.getUserById(ParseUtil.parseString2Int(userKey));
-        }
-        if("phonenumber".equals(key)){
-            user = userService.getUserByPhonenumber(userKey);
-        }
-        if("email".equals(userKey)){
-            user = userService.getUserByEmail(userKey);
-        }
-        if(user==null){
-            //用户为null,返回登录界面
-            model.addAttribute("msg","用户不存在");
-            return "user/login";    //
-        }else {
-            //用户存在，但是输入密码错误
-            if(!password.equals(user.getPassword())){
-                model.addAttribute("msg","密码错误");
-                return "user/login";
-            }
-        }
-        HttpSession session = request.getSession();
-        session.setAttribute("user",user);
-        model.addAttribute("user",user);
+//        String searchBy = ParseUtil.parseParamIsIdPhoneEmail(userKey);
+//        User user = null;
+//        if("id".equals(searchBy)){
+//            user = userService.getUserById(ParseUtil.parseString2Int(userKey));
+//        }
+//        if("phonenumber".equals(searchBy)){
+//            user = userService.getUserByPhonenumber(userKey);
+//        }
+//        if("email".equals(searchBy)){
+//            user = userService.getUserByEmail(userKey);
+//        }
+//        if(user==null){
+//            //用户为null,返回登录界面
+//            model.addAttribute("msg","用户不存在");
+//            return "user/login";    //
+//        }else {
+//            //用户存在，但是输入密码错误
+//            if(!password.equals(user.getPassword())){
+//                model.addAttribute("msg","密码错误");
+//                return "user/login";
+//            }
+//        }
+//        HttpSession session = request.getSession();
+//        session.setAttribute("user",user);
+//        model.addAttribute("user",user);
         return "user/user_info";
     }
 
