@@ -15,7 +15,7 @@
 </head>
 <body>
 <div id="login_header">
-    <img class="logo_img" alt="" src="../../../static/img/logo1.png" style="height: 80px;width:100px;" >
+    <img class="logo_img" alt="" src="../../../static/img/logo.png" style="height: 80px" >
 </div>
 
 <div class="login_banner">

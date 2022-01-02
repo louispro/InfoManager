@@ -29,6 +29,7 @@
         SELECT u.id,u.username,u.pwd,u.gender,u.education,u.phonenumber,u.address,u.email,u.height,u.weight,u.imageUrl,r.roleName FROM user_table AS u
         LEFT JOIN role_table AS r
         ON u.roleId = r.id
+        ORDER BY id
     </select>
 
     <select id="getUserById" parameterType="Integer" resultMap="userResultMap">

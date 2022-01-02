@@ -45,13 +45,16 @@ public class ManagerController {
     public String list(@RequestParam(value = "pageNum",defaultValue = "1",required = false)Integer pageNum,
                        @RequestParam(value = "pageSize",defaultValue = "15",required = false)Integer pageSize,Model model){
         if(pageNum <= 0)
-            pageNum = 0;
+            pageNum = 1;
         int pages = userService.getUserCount()/15+1;
         if(pageNum >= pages)
             pageNum = pages;
         pageSize = 15;
         Page<User> page = PageHelper.startPage(pageNum,pageSize);
         List<User> users = userService.getAllUser();
+        for(User user : users){
+            System.out.println(user);
+        }
         model.addAttribute("users",users);
         model.addAttribute("pageNum",page.getPageNum());
         model.addAttribute("pages",page.getPages());

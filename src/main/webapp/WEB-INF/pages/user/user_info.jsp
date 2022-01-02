@@ -41,7 +41,7 @@
         用户信息展示
     </p>
     <div style="float:right">
-        <img style="height: 50px;width:50px;border-radius: 25px;margin-top:15px;margin-right:20px;" src="../../../static/img/user/default.jpg" title="${sessionScope.user.username}" alt="${sessionScope.user.username}">
+        <img style="height: 50px;width:50px;border-radius: 25px;margin-top:15px;margin-right:20px;" src="../../../static/img/user/${sessionScope.user.imageUrl==null?"default.jpg":sessionScope.user.imageUrl}" title="${sessionScope.user.username}" alt="${sessionScope.user.username}">
 
         <a href="${pageContext.request.contextPath}/user/logout" style="font-size: 20px;margin-right: 20px; position: relative;top:10px;color: dodgerblue">注销</a>
     </div>
@@ -54,16 +54,16 @@
                 <div class="col-md-4 col-md-offset-7">
                     <div class="thumbnail">
                         <div class="imgDiv" align="center">
-                            <img class="userImg" src="../../../static/img/user/${requestScope.user.imageUrl==null?"default.jpg":requestScope.user.imageUrl}"/>
-                            <h4 style="padding-left: 0px;padding-bottom: 10px;">${requestScope.user.username}</h4>
+                            <img class="userImg" src="../../../static/img/user/${sessionScope.user.imageUrl==null?"default.jpg":sessionScope.user.imageUrl}"/>
+                            <h4 style="padding-left: 0px;padding-bottom: 10px;">${sessionScope.user.username}</h4>
                         </div>
-                        <h4>性&nbsp&nbsp&nbsp&nbsp别： ${requestScope.user.gender==null?"":requestScope.user.gender}</h4>
-                        <h4>手机号： ${requestScope.user.phonenumber==null?"":requestScope.user.phonenumber}</h4>
-                        <h4>地&nbsp&nbsp&nbsp&nbsp址： ${requestScope.user.address==null?"":requestScope.user.address}</h4>
-                        <h4>邮&nbsp&nbsp&nbsp&nbsp箱： ${requestScope.user.email==null?"":requestScope.user.email}</h4>
-                        <h4>学&nbsp&nbsp&nbsp&nbsp历： ${requestScope.user.education==null?"":requestScope.user.education}</h4>
-                        <h4>身&nbsp&nbsp&nbsp&nbsp高： ${requestScope.user.height==null?"":requestScope.user.height}${requestScope.user.height==null?"":"cm"}</h4>
-                        <h4>体&nbsp&nbsp&nbsp&nbsp重： ${requestScope.user.weight==null?"":requestScope.user.weight}${requestScope.user.weight==null?"":"斤"}</h4>
+                        <h4>性&nbsp&nbsp&nbsp&nbsp别： ${sessionScope.user.gender==null?"":sessionScope.user.gender}</h4>
+                        <h4>手机号： ${sessionScope.user.phonenumber==null?"":sessionScope.user.phonenumber}</h4>
+                        <h4>地&nbsp&nbsp&nbsp&nbsp址： ${sessionScope.user.address==null?"":sessionScope.user.address}</h4>
+                        <h4>邮&nbsp&nbsp&nbsp&nbsp箱： ${sessionScope.user.email==null?"":sessionScope.user.email}</h4>
+                        <h4>学&nbsp&nbsp&nbsp&nbsp历： ${sessionScope.user.education==null?"":sessionScope.user.education}</h4>
+                        <h4>身&nbsp&nbsp&nbsp&nbsp高： ${sessionScope.user.height==null?"":sessionScope.user.height}${sessionScope.user.height==null?"":"cm"}</h4>
+                        <h4>体&nbsp&nbsp&nbsp&nbsp重： ${sessionScope.user.weight==null?"":sessionScope.user.weight}${sessionScope.user.weight==null?"":"斤"}</h4>
                         <div style="height: 20px">
                             <a href="${pageContext.request.contextPath}/user/toEdit" style="float:right;">修改信息</a>
                         </div>
@@ -74,7 +74,7 @@
         <div style="height: 40px"></div>
     </div>
     <div style="height:100px; text-align:center; font-size: 20px; margin-top:15px">
-        李月.Copyright &copy;2021/12/22
+        赖小燚.Copyright &copy;2021/12/22
     </div>
 </body>
 </html>

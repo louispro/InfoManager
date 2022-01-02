@@ -53,7 +53,6 @@ public class UserInterceptor implements HandlerInterceptor {
                 }
             }
             request.getSession().setAttribute("user",user);
-            request.setAttribute("user",user);
             return true;
         }else {
             //用户未登录，返回登录界面登录

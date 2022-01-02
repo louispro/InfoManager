@@ -67,7 +67,7 @@
 
     <div style="height:50px;background-color: #39987c;position: fixed;bottom:0; width:100%;">
         <p style=" text-align:center; font-size: 20px;position:relative;top:15px;">
-            李月.Copyright &copy;2021/12/22
+            赖小燚.Copyright &copy;2021/12/22
         </p>
     </div>
 
@@ -124,7 +124,6 @@
                             "roleName":roleName,
                             "pageNum":${requestScope.pageNum}
                         },function (data){
-                            alert(data)
                             window.location.href = "http://localhost:8080/manage/list?pageNum="+data
                         })
                 }

@@ -31,31 +31,11 @@ public class UserController {
 
     @PostMapping("/login")
     public String login(@RequestParam("userKey")String userKey, @RequestParam("password")String password, Model model, HttpServletRequest request){
-//        String searchBy = ParseUtil.parseParamIsIdPhoneEmail(userKey);
-//        User user = null;
-//        if("id".equals(searchBy)){
-//            user = userService.getUserById(ParseUtil.parseString2Int(userKey));
-//        }
-//        if("phonenumber".equals(searchBy)){
-//            user = userService.getUserByPhonenumber(userKey);
-//        }
-//        if("email".equals(searchBy)){
-//            user = userService.getUserByEmail(userKey);
-//        }
-//        if(user==null){
-//            //用户为null,返回登录界面
-//            model.addAttribute("msg","用户不存在");
-//            return "user/login";    //
-//        }else {
-//            //用户存在，但是输入密码错误
-//            if(!password.equals(user.getPassword())){
-//                model.addAttribute("msg","密码错误");
-//                return "user/login";
-//            }
-//        }
-//        HttpSession session = request.getSession();
-//        session.setAttribute("user",user);
-//        model.addAttribute("user",user);
+        return "user/user_info";
+    }
+
+    @GetMapping("/toUserInfo")
+    public String toUserInfoPage(){
         return "user/user_info";
     }
 
@@ -72,7 +52,7 @@ public class UserController {
                            @RequestParam("email")String email,
                            @RequestParam("height")Integer height,
                            @RequestParam("weight")Integer weight,Model model,
-                           @RequestParam("roleId")Integer roleId,@RequestParam("imageUrl")MultipartFile file, HttpServletRequest request){
+                           @RequestParam("imageUrl")MultipartFile file, HttpServletRequest request){
         HttpSession session = request.getSession();
         User user = (User)session.getAttribute("user");    //获取session中的user
         user.setUsername(username);
@@ -141,4 +121,10 @@ public class UserController {
         return "user/login";
     }
 
+    @RequestMapping("/error")
+    public String errorTest(){
+        String str = null;
+        str.equals("louis");
+        return "/";
+    }
 }
